@@ -10,12 +10,12 @@ void setup() {
 }
 
 void loop() {
-  Serial.println();
+  // Serial.println("hellooh");
   if (mySerial.available()) {
     // Read data from the sensor and print it to the Serial Monitor
     while (mySerial.available()) {
       char c = mySerial.read();
-      Serial.print("hello");
+      Serial.println((int)c);
     }
   }
 }
