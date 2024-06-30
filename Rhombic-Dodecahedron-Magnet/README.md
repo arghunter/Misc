@@ -1,4 +1,4 @@
-#Rhombic Dodecahedron Magnet
+# Rhombic Dodecahedron Magnet
 
 This is a rhombic dodecahedron with magnets embedded in the sides, as the shape naturally tesselates the magnets help them build on top of each other.
 
