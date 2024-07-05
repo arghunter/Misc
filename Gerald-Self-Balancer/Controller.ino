@@ -1,5 +1,4 @@
-
- #include "Adafruit_BNO08x_RVC.h"
+#include "Adafruit_BNO08x_RVC.h"
  #include <PID_v1.h>
  Adafruit_BNO08x_RVC rvc = Adafruit_BNO08x_RVC();
 #define speedPinR 9    //  RIGHT PWM pin connect MODEL-X ENA
@@ -15,11 +14,10 @@
 
 int speed=100;
 double Setpoint, Input, Output;
-
-double Kp=10, Ki=0, Kd=0.;
+double Kp=9, Ki=0.2, Kd=1.2;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 bool forward=true;
-
+/*motor control*/
 double offset=-1000;
 void go_Advance(void)  //Forward
 {
@@ -124,8 +122,6 @@ void setup()
 
 
   
-
-  
  
 
 }
@@ -138,14 +134,14 @@ void loop(){
   }
   if(offset==-1000){
     offset=0;
-    Setpoint=10-offset;
+    Setpoint=9-offset;
   }
   if(heading.roll<90){
     Input=int( (heading.roll));
   }else{
   Input=int( (heading.roll));
   }
-  Input-=6;
+  Input-=8;
   Input=Input
 
   myPID.Compute();
