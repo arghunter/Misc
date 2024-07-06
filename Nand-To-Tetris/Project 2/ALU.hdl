@@ -54,4 +54,18 @@ CHIP ALU {
         Add16(a =xp , b =yp , out =xplusy );
         And16(a=xp , b=yp , out=xandy );
         Mux16(a=xandy , b=xplusy , sel=f , out=outp );
+
+        Not16(in=outp , out=outnot );
+        Mux16(a=outp,b=outnot,sel=no,out[0..7]=outLSB,out[8..14]=outMSB,out[15]=msb);
+        Mux16(a[0..7]=outLSB, a[8..14]=outMSB, a[15]=msb, b=true, sel=false, out=out);
+
+
+        Or8Way(in=outLSB , out=zeroLSB );
+        Or8Way(in[0..6]=outMSB,in[7]=msb, out=zeroMSB );
+        Or(a=zeroLSB , b=zeroMSB , out=zrp );
+        Not(in=zrp , out=zr );
+
+        And(a=msb , b=true , out=ng );
+
+        
 }
